@@ -74,7 +74,7 @@ dataPeak = read_gmql(test_path,"NarrowPeakParser")
 ## repository. For a public dataset in a (remote) GMQL repository the 
 ## prefix "public." is needed before dataset name
 
-remote_url = "http://genomic.deib.polimi.it/gmql-rest-r/"
+remote_url = "http://www.gmql.eu/gmql-rest/"
 login_gmql(remote_url)
 data1 = read_gmql("public.Example_Dataset_1", is_local = FALSE)
 

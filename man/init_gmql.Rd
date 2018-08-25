@@ -38,16 +38,3 @@ None
 It initializes and runs GMQL server for executing GMQL query.
 It also performs a login to GMQL REST services suite, if needed
 }
-\examples{
-
-## This statement initializes GMQL with local processing with sample files 
-## output format as tab-delimited
-
-init_gmql("tab", FALSE)
-
-## This statement initializes GMQL with remote processing
-
-remote_url = "http://genomic.deib.polimi.it/gmql-rest-r/"
-init_gmql(remote_processing = TRUE, url = remote_url)
-
-}

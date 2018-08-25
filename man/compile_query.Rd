@@ -29,7 +29,7 @@ using the proper GMQL web service available on a remote server
 
 ## Login to GMQL REST services suite as guest
 
-remote_url = "http://genomic.deib.polimi.it/gmql-rest-r/"
+remote_url = "http://www.gmql.eu/gmql-rest/"
 login_gmql(remote_url)
 
 ## This statement gets the query as text string and runs the compile 

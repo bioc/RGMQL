@@ -26,7 +26,7 @@ If error occurs, a specific error is printed
 
 ## Login to GMQL REST services suite as guest, then logout
 
-remote_url = "http://genomic.deib.polimi.it/gmql-rest-r/"
+remote_url = "http://www.gmql.eu/gmql-rest/"
 login_gmql(remote_url)
 logout_gmql(remote_url)
 
