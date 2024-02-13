@@ -1,5 +1,5 @@
 # RGMQL
-API for calling interactively the GMQL Engine from R-Bioconductor
+API for calling interactively the GMQL Engine from R/Bioconductor
 
 [RGMQL on Bioconductor](https://www.bioconductor.org/packages/release/bioc/html/RGMQL.html)
 
@@ -23,6 +23,14 @@ It is recommended the use ot the latest version of RStudio.
 ```
 RGMQL/
 |-- Example of workflows/
+|   |-- EXAMPLES.Rproj
+|   |-- use_case_1.Rmd
+|   |-- use_case_2.Rmd
+|   |-- use_case_3.Rmd
+|   |-- use_case_1.html
+|   |-- use_case_2.html
+|   |-- use_case_3.html
+|   |-- ....
 |-- R/
 |-- inst/
 |   |-- example/
@@ -81,6 +89,23 @@ At the end, in both cases, edit the `/etc/paths` and add:
 
 `$JAVA_HOME/bin`
 
+### Errors
+
+Be aware that using a too recent Java version (e.g., the Java version 17) on **macOS Mojave** currently gives errors in running RGMQL.
+Conversely, macOS Big Sur runs smoothly RGMQL also with the last Java version 17.
+
+To overcome this issue, we suggest macOS Mojave users to configure rJava to use an older version, like the Java version 11, by running the following command:   
+
+`sudo R CMD javareconf JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.13.jdk/Contents/Home`
+
+Also, check that Java in use is actually version 11 and, then, check the rJava version used in R, by running:
+
+`library(rJava)`
+
+`.jinit()`
+
+`.jcall("java/lang/System", "S", "getProperty", "java.runtime.version")`
+
 
 ## Windows Settings
 
@@ -93,7 +118,7 @@ Create environment variable `JAVA_HOME`:
 
 ### Errors
 
-Be aware that during a local-processing execution an error message
+Be aware that during a local-processing execution the following error message may arise:
 ```{
 Error in .jcall("RJavaTools", "Ljava/lang/Object;", "invokeMethod", cl, 
 : org.apache.spark.SparkException: Job aborted due to stage failure: 
@@ -101,21 +126,20 @@ Task 0 in stage 7.0 failed 1 times, most recent failure:
 Lost task 0.0 in stage 7.0 (TID 59, localhost, executor driver): 
 java.io.IOException: (null) entry in command string: null chmod 0644
 ```
-may arise.
 
-This happens because some Hadoop binary files are missing in Windows 64Bits.
+This happens because some Hadoop binary files are missing in Windows 64 bits.
 In this case you need to:
 
 * Open [DownGit](https://minhaskamal.github.io/DownGit/#/home)
 * Paste the url `https://github.com/steveloughran/winutils/tree/master/hadoop-2.8.1` and download the **winutil-hadoop2.8.1**
-* Create a directory (for example at ```C:\Program Files\hadoop\bin```. Use a path you wish
-* Copy the files from the repository folder **hadoop-2.8.1** into the folder earlier created.
-* Create environment variable HADOOP_HOME with value equal to the folder path you copied the binaries.
+* Create a folder (for example at ```C:\Program Files\hadoop\bin```), using a path you wish
+* Copy the files from the repository folder **hadoop-2.8.1** into the folder earlier created
+* Create the environment variable HADOOP_HOME with value equal to the folder path where you copied the binaries.
 
 or
 
 * Go to [https://github.com/steveloughran/winutils](https://github.com/steveloughran/winutils), download the repository
-* Create a directory (for example at ```C:\Program Files\hadoop\bin```. Use a path you wish
-* Copy the files from the repository folder **hadoop-2.8.1** into the folder earlier created.
-* Create environment variable HADOOP_HOME with value equal to the folder path you copied the binaries.
+* Create a folder (for example at ```C:\Program Files\hadoop\bin```), using a path you wish
+* Copy the files from the repository folder **hadoop-2.8.1** into the folder earlier created
+* Create the environment variable HADOOP_HOME with value equal to the folder path where you copied the binaries.
 
